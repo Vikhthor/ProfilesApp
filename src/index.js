@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import $ from 'jquery';
+import FilterForm from './FilterForm';
+import ProfilesList from './ProfilesList';
 import reportWebVitals from './reportWebVitals';
 
+let profiles;
+
+class Profiles extends React.Component{
+  constructor(){
+    super();
+    this.filterList = this.filterList.bind(this);
+    this.state = {profiles: []}
+  }
+  filterList(key, value){
+    const profiles = this.state.profiles.filter( profile =>
+      profile[key] === value);
+    this.setState({profiles})
+  }
+  componentWillMount(){
+    const that = this;
+    $.ajax('https://api.enye.tech/v1/challenge/records',
+      {
+        success: function (data, status, xhr){
+          // console.log(data);
+          profiles = data.records.profiles;
+          that.setState({profiles});
+        }
+      }
+    )
+  }
+  render(){
+    const {profiles} = this.state;
+    const {filterList} = this;
+    return(
+      <div>
+        <FilterForm filterList={filterList}/>
+        <ProfilesList profiles={profiles} filterList={filterList}/>
+      </div>
+    )
+  }
+};
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Profiles/>
   </React.StrictMode>,
   document.getElementById('root')
 );
