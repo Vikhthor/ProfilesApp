@@ -5,6 +5,7 @@ import './index.css';
 import $ from 'jquery';
 import FilterForm from './FilterForm';
 import ProfilesList from './ProfilesList';
+import ProfileDetails from './ProfileDetails';
 import reportWebVitals from './reportWebVitals';
 
 let profiles;
@@ -13,19 +14,31 @@ class Profiles extends React.Component{
   constructor(){
     super();
     this.filterList = this.filterList.bind(this);
-    this.state = {profiles: []}
+    this.onDetails = this.onDetails.bind(this);
+    this.state = {profiles:[], details:{}, seeDetails: false}
   }
-  filterList(key, value){
-    const profiles = this.state.profiles.filter( profile =>
-      profile[key] === value);
+  filterList(gender, payMethod){
+    const profiles = this.state.profiles.filter( profile => {
+      if(gender && payMethod){
+        return profile.Gender === gender && profile.PaymentMethod === payMethod;
+      } else if(gender){
+        return profile.Gender === gender;
+      } else if(payMethod){
+        return profile.PaymentMethod === payMethod;
+      } else if(!gender && !payMethod){
+        return true;
+      }
+    });
     this.setState({profiles})
+  }
+  onDetails(profile){
+    this.setState({details:{profile}, seeDetails: true})
   }
   componentWillMount(){
     const that = this;
     $.ajax('https://api.enye.tech/v1/challenge/records',
       {
         success: function (data, status, xhr){
-          // console.log(data);
           profiles = data.records.profiles;
           that.setState({profiles});
         }
@@ -33,12 +46,13 @@ class Profiles extends React.Component{
     )
   }
   render(){
-    const {profiles} = this.state;
-    const {filterList} = this;
+    const {profiles, details, seeDetails} = this.state;
+    const {filterList, onDetails} = this;
     return(
+      (seeDetails)? <ProfileDetails profile={details}/> :
       <div>
         <FilterForm filterList={filterList}/>
-        <ProfilesList profiles={profiles} filterList={filterList}/>
+        <ProfilesList profiles={profiles} onDetails={onDetails} filterList={filterList}/>
       </div>
     )
   }

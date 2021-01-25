@@ -1,9 +1,13 @@
 //import './App.css';
 
 function Profile(props) {
+  const click = e => {
+    e.preventDefault();
+    props.onDetails(props.profile);
+  }
   return (
     <div className="Profile col-xs-12 list-group-item">
-      <section className="header">
+      <section className="profile">
         <h4 className="names">
             {props.profile.FirstName + ' ' + props.profile.LastName}
         </h4>
@@ -20,6 +24,7 @@ function Profile(props) {
           className="Details badge pull-right badge-default"
           href="/#"
           target="_blank"
+          onClick={click}
         >
           See Details
         </a>
