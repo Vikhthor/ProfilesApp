@@ -1,8 +1,8 @@
 import Profile from './Profile';
 
-function Profiles(props) {
+function ProfilesList(props) {
     return (
-      <div className="Profiles">
+      <div className="Profiles row list-group">
        {props.profiles.map((profile) => 
         <Profile profile={profile}/>
        )}
@@ -10,4 +10,4 @@ function Profiles(props) {
     );
   }
   
-  export default Profiles;
+  export default ProfilesList;
