@@ -40,6 +40,8 @@ function ProfileDetails(props) {
                                 <div className="panel-body">
                                     <p>{props.profile.profile.Longitude}</p>
                                     <p>{props.profile.profile.Latitude}</p>
+
+                                    <img alt="location" src={"https://maps.googleapis.com/maps/api/staticmap?center="+props.profile.profile.Latitude+","+props.profile.profile.Longitude+"&zoom=12&size=400x400&key=AIzaSyDsgzJrRHZ2MEZugzy15aBMA1x9TxXaaYQ"}></img>
                                 </div>
                             </div>
                         </div>
