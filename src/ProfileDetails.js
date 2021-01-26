@@ -29,7 +29,7 @@ function ProfileDetails(props) {
                                 <div className="panel-body">
                                     <p><i className="fa fa-user"></i>{" Username: " + props.profile.profile.UserName}</p>
                                     <p><i className="fa fa-venus-mars"></i>{" Gender: " + props.profile.profile.Gender}</p>
-                                    <p><i className="fa fa-envelope"></i>{" Email: " + props.profile.profile.Email}</p>
+                                    <p><i className="fa fa-envelope"></i>Email: <a href={props.profile.profile.Email}>{props.profile.profile.Email}</a></p>
                                     <p><i className="fa fa-phone"></i>{" Phone number: " + props.profile.profile.PhoneNumber}</p>
                                 </div>
                             </div>
@@ -47,10 +47,10 @@ function ProfileDetails(props) {
                         <div className="col-xs-12 col-sm-6">
                             <div className="panel panel-primary">
                                 <div className="panel-heading">
-                                    <h2><i className="fa fa-map-marker"></i> Map</h2>
+                                    <h2><i className="fa fa-map-marker"></i> Location Info</h2>
                                 </div>
                                 <div className="panel-body">
-                                    <p><i className="fa fa-map-marker"></i>{" Lat: " + props.profile.profile.Latitude + "Long: " + props.profile.profile.Longitude}</p>
+                                    <p><i className="fa fa-map-marker"></i>{" Lat: " + props.profile.profile.Latitude + "  Long: " + props.profile.profile.Longitude}</p>
                                     <img alt="location" src={"https://maps.googleapis.com/maps/api/staticmap?center="+props.profile.profile.Latitude+","+props.profile.profile.Longitude+"&zoom=12&size=400x400&key=AIzaSyDsgzJrRHZ2MEZugzy15aBMA1x9TxXaaYQ"}></img>
                                 </div>
                             </div>
@@ -60,11 +60,11 @@ function ProfileDetails(props) {
                         <div className="col-xs-12">
                         <div className="panel panel-primary">
                                 <div className="panel-heading">
-                                    <h2><i className="fa fa-network-wired"></i>Network info</h2>
+                                    <h2><i className="fa fa-network-wired"></i>Network Info</h2>
                                 </div>
                                 <div className="panel-body">
                                     <p><i className="fa fa-site-map"></i>{" MacAddress: " + props.profile.profile.MacAddress}</p>
-                                    <p><i className="fa fa-link"></i>{" URL: " + props.profile.profile.URL}</p>
+                                    <p><i className="fa fa-link"></i><a href={props.profile.profile.URL}>{" URL: " + props.profile.profile.URL}</a></p>
                                     <p><i className="fa fa-clock"></i>{" Last login: " + props.profile.profile.LastLogin}</p>
                                 </div>
                             </div>

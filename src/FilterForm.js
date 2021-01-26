@@ -8,7 +8,7 @@ function FilterForm(props) {
       e.preventDefault();
       props.searchProfile(_search.value)
     }
-    const searchStyle = (props.searchResult)? {visibility:"visible"}: {visibility:"hidden"}
+    // const searchStyle = (props.searchResult)? {visibility:"visible"}: {visibility:"hidden"}
     return (
       <div className="Profile">
         <form className="form-inline" onSubmit={applyFilter}>
@@ -38,9 +38,8 @@ function FilterForm(props) {
           </div>
           <input className="pull-right" type="submit" value="Search"/>
         </form>
-        <div className="alert alert-info" style={searchStyle}>
-          Search results for: {props.searchValue}
-        </div>
+        {(props.searchResult)? <div className="alert alert-info"> Search results for:  {props.searchValue}
+        </div>: <div></div>}       
       </div>
     );
   }

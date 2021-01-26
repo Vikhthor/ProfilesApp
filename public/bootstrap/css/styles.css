@@ -16,7 +16,14 @@ i {
     margin-right: 25px;
 }
 
+.pagination {
+    margin-top: 25px;
+}
 
 footer {
     padding: 50px;
+}
+
+a {
+    color: black;
 }
