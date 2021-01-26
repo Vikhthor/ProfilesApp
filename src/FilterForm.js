@@ -1,12 +1,17 @@
 function FilterForm(props) {
-    let _gender, _paymethod;
-    const submit = e => {
+    let _gender, _paymethod, _search;
+    const applyFilter = e => {
         e.preventDefault();
         props.filterList(_gender.value, _paymethod.value)
     }
+    const search = e => {
+      e.preventDefault();
+      props.searchProfile(_search.value)
+    }
+    const searchStyle = (props.searchResult)? {visibility:"visible"}: {visibility:"hidden"}
     return (
       <div className="Profile">
-        <form className="form-inline" onSubmit={submit}>
+        <form className="form-inline" onSubmit={applyFilter}>
          <div className="form-group">
              <label for="gender">Filter by gender </label>
              <select name="gender" ref={ input => _gender = input } id="gender">
@@ -26,6 +31,16 @@ function FilterForm(props) {
          </div>
          <input className="pull-right" type="submit" value="  Apply Filter"/>
         </form>
+        <form className="form-inline" onSubmit={search}>
+          <div className="form-group">
+              <label for="search"></label>
+              <input type="search" ref={ input => _search = input } placeholder="Search profile"/>
+          </div>
+          <input className="pull-right" type="submit" value="Search"/>
+        </form>
+        <div className="alert alert-info" style={searchStyle}>
+          Search results for: {props.searchValue}
+        </div>
       </div>
     );
   }

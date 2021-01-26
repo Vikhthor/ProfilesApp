@@ -11,13 +11,13 @@ function Profile(props) {
         <h4 className="names">
             {props.profile.FirstName + ' ' + props.profile.LastName}
         </h4>
-        <p className="email">
-            {props.profile.Email}
+        <p className="email"><i className="fa fa-envelope"></i>
+            {"  "+props.profile.Email}
         </p>
-        <p className="phone">
-            {props.profile.PhoneNumber}
+        <p className="phone"><i className="fa fa-phone"></i>
+            {"  "+props.profile.PhoneNumber}
         </p>
-        <p className="username">
+        <p className="username"><i className="fa fa-user"></i>
             Username: <span>{' ' + props.profile.UserName}</span>
         </p>
         <a
